@@ -1,0 +1,40 @@
+
+
+.wrapper {
+	position: relative;
+	margin: 0 auto;
+	width: 90%;
+	max-width: 500px;
+}
+
+.site-header {
+	background: #D4DFE6;
+	height: 50px;
+	display: flex;
+	align-items: center;
+	box-shadow: $box-shadow;
+}
+.site-title {
+	font-size: 2.6rem;
+	font-weight: 300;
+	vertical-align: middle;
+}
+.site-logo {
+	width: 25px;
+	vertical-align: middle;
+}
+
+
+/* Page */
+
+.site-main {
+	padding: 30px 0;
+}
+
+
+
+
+
+
+
+

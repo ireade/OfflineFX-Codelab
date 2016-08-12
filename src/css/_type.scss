@@ -1,0 +1,69 @@
+html {
+    font-size: 62.5%;
+    min-height: 100%;
+}
+
+
+body {
+    font-size: 1.6rem;
+    font-weight: 300;
+    line-height: 1.6;
+    font-family: $font;
+    color: $text-clr;
+
+    background-image: linear-gradient(-135deg, #67AEE8 0%, #D4DFE6 100%);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+
+    min-height: 100%;
+}
+
+
+
+
+
+h3 {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+}
+
+a {
+    text-decoration: underline;
+    color: inherit; 
+}
+
+em {
+    font-weight: 700;
+}
+
+small {
+    font-size: 1.4rem;
+}
+
+p {
+    margin-bottom: 5px;
+    display: block;
+}
+
+
+
+
+.site-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.page-title {
+    font-size: 2.4rem;
+    font-weight: 300;
+
+}
+
+
+.primary-label {
+    font-weight: 700;
+    font-size: 1.4rem;
+}
+
+

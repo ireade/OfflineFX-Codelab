@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Offline FX</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="A Progressive Web App for FX">
+
+	<!-- @todo Step 6 - Support Native Integration -->
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+	
+	<header class="site-header">
+		<div class="wrapper">
+			<h1 class="site-title">
+				<img src="./img/logo.png" class="site-logo" alt="">
+				Offline FX
+			</h1>
+		</div>
+	</header>
+
+	<main class="site-main">
+		<div class="wrapper">
+			<p class="last-updated"></p>
+			<ul class="fx-list" id="fxList">
+				<!-- Default content -->
+			</ul>
+		</div>
+	</main>
+
+	<button type="button" class="fab open-dialog" aria-label="Add New Currency">+</button>
+	
+	<section class="dialog" role="dialog" aria-labelledby="dialog-title" aria-hidden="true">
+		<h2 id="dialog-title" class="dialog-title">Add a New Currency</h2>
+		<div class="dialog-content">
+			<form id="addCurrencyForm">
+				<div class="input-group">
+					<label for="compare_currency">
+						<span class="sr-only">Choose a Currency</span>
+						<select name="compare_currency" id="compare_currency" required>
+							<!-- Options added with javascript -->
+						</select>
+					</label>
+				</div>
+				<div class="input-group">
+					<button type="submit" class="close-dialog">Add</button>
+				</div>
+				
+			</form>
+			<button type="button" aria-label="Close Navigation" class="close-dialog btn-bare"> or Close Dialog </button>
+		</div>
+	</section>
+	<div class="dialog-overlay" aria-hidden="true"></div>
+
+
+	<div class="toast-container">
+		<div class="toast"></div>
+	</div>
+
+	
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	  ga('create', 'UA-60256750-13', 'auto');
+	  ga('send', 'pageview');
+	</script>
+    <script src="./js/lib/lib.js"></script>
+    <script src="./js/utils.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>
