@@ -24,8 +24,7 @@ FX.prototype.init = function() {
             fetchedFromDatabase = true;
             return Promise.resolve( dbResponse[0] );
         }
-
-        console.log("not found in db, about to fetch and save");
+        
         return this._fetchAndSave(url);
     })
     .then((data) => {
