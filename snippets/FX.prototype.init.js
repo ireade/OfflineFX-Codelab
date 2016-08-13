@@ -3,19 +3,23 @@ FX.prototype.init = function() {
     let fetchedFromDatabase = false;
     let url;
 
+    // Retrieve currencies to compare against from database
     offlineFXDatabase.retrieve('CompareCurrencies')
     .then((currenciesResponse) => {
 
+        // If no compare currencies exist, handle empty state
         if ( currenciesResponse.length == 0 ) {
             this._handleEmptyState();
             return Promise.reject({displayErrorMessage: false});
         }
 
+        // If currencies exist, build API url
         const compareCurrencies = currenciesResponse.map( (currency) => currency.currency ).join(',');
         url = `${API_URL}&currencies=${compareCurrencies}`;
         return Promise.resolve(url);
     })
     .then((url) => {
+        // Find item in database
         return offlineFXDatabase.retrieve('FX', 'url', url);
     })
     .then((dbResponse ) => {
@@ -28,9 +32,11 @@ FX.prototype.init = function() {
         return this._fetchAndSave(url);
     })
     .then((data) => {
+        // Create item on page
         return this._createFXObjects(data);
     })
     .then(() => {
+        // Do background update
         if ( fetchedFromDatabase ) { return this._doBackgroundUpdate(url) }
     })
     .catch((err) => {

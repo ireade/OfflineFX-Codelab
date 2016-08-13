@@ -180,16 +180,15 @@ FX.prototype._fetchAndSave = function(url, firstRemoveFromDatabase) {
 
 
 FX.prototype._doBackgroundUpdate = function(url) {
-    console.log("about to do background update", url);
     this._fetchAndSave(url, true)
     .then( (data) => {
-        console.log("displaying info from background update");
         return this._createFXObjects(data);
     })
     .catch( () => {
         console.log("looks like there's no wifi connnection to update in background");
     });
 }
+
 
 
 
@@ -215,10 +214,16 @@ FX.prototype.init = function() {
         return Promise.resolve(url);
     })
     .then((url) => {
+        // Find item in database
+        return offlineFXDatabase.retrieve('FX', 'url', url);
+    })
+    .then((dbResponse ) => {
 
-        // @todo Step 3 - Start with a Fast First Load
-
-        // Fetch data from API and save to database
+        if ( dbResponse.length > 0 ) {
+            fetchedFromDatabase = true;
+            return Promise.resolve( dbResponse[0] );
+        }
+        
         return this._fetchAndSave(url);
     })
     .then((data) => {
@@ -226,6 +231,7 @@ FX.prototype.init = function() {
         return this._createFXObjects(data);
     })
     .then(() => {
+        // Do background update
         if ( fetchedFromDatabase ) { return this._doBackgroundUpdate(url) }
     })
     .catch((err) => {
