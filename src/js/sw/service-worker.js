@@ -5,7 +5,7 @@ importScripts('js/lib/sw-toolbox/sw-toolbox.js');
 importScripts('js/lib/sw-offline-google-analytics.js');
 goog.offlineGoogleAnalytics.initialize();
 
-// @todo Step 4 - User Service Workers to Precache the App Shell
+// Files to precache
 const precacheFiles = [
 	'./',
 	'./index.html',
@@ -21,6 +21,7 @@ const precacheFiles = [
 	'./js/lib/lib.js'
 ];
 
+// @todo Step 4 - Use Service Workers to Precache the App Shell
 
 // Install and Activate events
 self.addEventListener('install', (event) => event.waitUntil(self.skipWaiting()) );
