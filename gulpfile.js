@@ -51,6 +51,10 @@ gulp.task('js', function() {
 		.pipe(uglify())
 		.pipe(gulp.dest('public/js/lib'));
 	gulp.src('src/js/utils/*.js')
+		.pipe(
+			babel({ presets: ['es2015'] })
+			.on('error', gutil.log)
+		)
 		.pipe(concat('utils.js'))
 		.pipe(gulp.dest('public/js'));
 	gulp.src('src/js/sw/service-worker.js')
