@@ -109,9 +109,7 @@ FX.prototype._addEventListeners = function() {
 
 FX.prototype._createFXObjects = function(data) {
 
-    let lastUpdated = data.clientTimestamp;
-
-    lastUpdated = moment(lastUpdated).calendar(null, {
+    const lastUpdated = moment(data.clientTimestamp).calendar(null, {
         sameDay: '[Today at] h:mma',
         nextDay: '[Tomorrow at] h:mma',
         nextWeek: '[Next] dddd [at] h:mma',
@@ -119,7 +117,6 @@ FX.prototype._createFXObjects = function(data) {
         lastWeek: '[Last] dddd [at] h:mma',
         sameElse: '[on] dddd Do MMMM [at] h:mma'
     });
-
     const lastUpdatedEl = document.querySelector('.last-updated');
     lastUpdatedEl.innerHTML = `Last updated: ${lastUpdated}`;
 
@@ -181,10 +178,10 @@ FX.prototype._fetchAndSave = function(url, firstRemoveFromDatabase) {
 
 FX.prototype._doBackgroundUpdate = function(url) {
     this._fetchAndSave(url, true)
-    .then( (data) => {
+    .then((data) => {
         return this._createFXObjects(data);
     })
-    .catch( () => {
+    .catch(() => {
         console.log("looks like there's no wifi connnection to update in background");
     });
 };
