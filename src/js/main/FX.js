@@ -210,20 +210,32 @@ FX.prototype.init = function() {
         return Promise.resolve(url);
     })
     .then((url) => {
+        // Find item in database
+        return offlineFXDatabase.retrieve('FX', 'url', url);
+    })
+    .then((dbResponse ) => {
 
-        // @todo Step 3 - Start with a Fast First Load
-
-        // Fetch data from API and save to database
+        // Start with a "fast first" load 
+        // If in database, return database response 
+        if ( dbResponse.length > 0 ) {
+            fetchedFromDatabase = true;
+            return Promise.resolve( dbResponse[0] );
+        }
+        
+        // Fetch from API and save to database
         return this._fetchAndSave(url);
     })
     .then((data) => {
         // Create item on page
         return this._createFXObjects(data);
     })
+    .then(() => {
+        // If from database, do background update
+        if ( fetchedFromDatabase ) { return this._doBackgroundUpdate(url) }
+    })
     .catch((err) => {
         if ( err.displayErrorMessage === false ) { return; }
         new Toast('error', "Uh oh, there was an error fetching information");
     });
-
 
 };
