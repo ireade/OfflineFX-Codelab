@@ -180,16 +180,14 @@ FX.prototype._fetchAndSave = function(url, firstRemoveFromDatabase) {
 
 
 FX.prototype._doBackgroundUpdate = function(url) {
-    console.log("about to do background update", url);
     this._fetchAndSave(url, true)
     .then( (data) => {
-        console.log("displaying info from background update");
         return this._createFXObjects(data);
     })
     .catch( () => {
         console.log("looks like there's no wifi connnection to update in background");
     });
-}
+};
 
 
 
@@ -224,9 +222,6 @@ FX.prototype.init = function() {
     .then((data) => {
         // Create item on page
         return this._createFXObjects(data);
-    })
-    .then(() => {
-        if ( fetchedFromDatabase ) { return this._doBackgroundUpdate(url) }
     })
     .catch((err) => {
         if ( err.displayErrorMessage === false ) { return; }

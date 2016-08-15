@@ -7,14 +7,16 @@ IDB.prototype._setupDB = function() {
 
     return idb.open('offlineFX', 1, function(upgradeDb) {
 
+        // Store the currencies the user is comparing against
+        const currenciesStore = upgradeDb.createObjectStore('CompareCurrencies', {
+          keyPath: 'currency'
+        });
+
+        // Store data received from API
         const FXStore = upgradeDb.createObjectStore('FX', {
           keyPath: 'clientTimestamp'
         });
         FXStore.createIndex('url', 'url');
-
-        const currenciesStore = upgradeDb.createObjectStore('CompareCurrencies', {
-          keyPath: 'currency'
-        });
         
     });
 };
