@@ -221,7 +221,8 @@ FX.prototype.init = function() {
             fetchedFromDatabase = true;
             return Promise.resolve( dbResponse[0] );
         }
-        
+
+        // If not in database
         // Fetch from API and save to database
         return this._fetchAndSave(url);
     })
